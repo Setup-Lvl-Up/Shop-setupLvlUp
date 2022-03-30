@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %} {% block title %} {{ parent() }} Modifier un produit {% endblock %} {% block contenu %}
+<h1 class="h2 mb-3 mt-4 font-weight-normal">Modifier un produit</h1>
+{% if form.produit is defined %} {% if form.produit != null %}
+<form class="form-signin" action="index.php?page=modif-produit" method="post" enctype="multipart/form-data">
+
+    <label for="inputDesignation" class="sr-only">designation:</label>
+    <input type="designation" id="inputDesignation" name="inputDesignation" class="form-control" placeholder="Modifier le nom de votre produit" value="{{ form.produit.designation}}" />
+
+    <label for="inputDescription" class="sr-only">modifier la description de votre produit: </label>
+    <textarea id="inputDescription" name="inputDescription" class="form-control" placeholder="Description">{{ form.produit.description }}</textarea>
+
+    <label for="inputPrix" class="sr-only">Modifier le prix de votre produit :</label>
+    <input type="number" id="prix" name="inputPrix" class="form-control" placeholder="Prix" value="{{ form.produit.prix }}" />
+
+    <label for="photo" class="sr-only">Photo :</label> {% if form.produit.photo == null %}
+    <p>Aucune Image enregistrer, vous pouvez en rajouter une !</p>{% else %}
+    <img src="./images/{{form.produit.photo}}" width="100" height="100" alt=" ">{% endif %}
+    <input type="file" name="photo" id="photo" class="form-control" />
+
+    <label for="type" class="sr-only">Type</label>
+    <select class="form-select" name="type">
+        {% for t in form.types %}
+        {% if t.id == form.produit.idType %}
+        <option value="{{ t.id }}" selected>{{ t.libelle }}</option>
+        {% else %}
+        <option value="{{ t.id }}">{{ t.libelle }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    <input type="hidden" name="id" value="{{ form.produit.id}}" />
+
+    <button class="btn btn-lg m-4 btn-primary btn-block" type="submit" name="btModifier">Modifier</button>
+    <a role="button" class="btn btn-lg btn-danger btn-block" href="index.php?page=admin-produit">Annuler</a>
+</form>
+{% else %}
+<h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
+<a href="index.php?page=admin-produit">Retourner sur la liste des produits</a> {% endif %} {% else %} {% if form.valide == true %}
+<h1 class="alert h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+<h1 class="h3 mb-3 font-weight-normal">
+    <a href="index.php?page=admin-produit">Retourner sur la liste des produits</a></h1>
+{% else %}
+<h1 class=" alert alert-success alert-danger" role="alert">{{ form.message }}</h1>
+<h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=admin-produit">Retourner sur la liste des produits</a></h1>
+{% endif %} {% endif %} {% endblock %}

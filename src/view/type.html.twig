@@ -1,0 +1,27 @@
+{% extends "baseAdmin.html.twig" %} {% block title %} {{ parent() }} Administration des catégorie {% endblock %} {% block contenu %} {{ parent() }}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Type de produit</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for t in type %}
+                        <tr>
+                            <td>{{t.libelle}}</td>
+                            <td><a role="button" class="btn btn-info btn-block" href="/public/index.php?page=modif-type&id={{ t.id }}">Modifier</a></td>
+                            <td><a role="button" class="btn btn-danger btn-block" href="/public/index.php?page=delete-type&id={{ t.id }}">Suprimer</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %} {% block title %} {{ parent() }} Accueil {% endblock %} {% block contenu %}
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h1 class="text-center">Bienvenue sur Shop-Shop </h1>
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    {% for key, c in liste %}
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button> {% endfor %}
+                </div>
+
+                <div class="carousel-inner">
+                    {% for key, c in liste %} {% if key == 0 %}
+                    <div class="carousel-item active" data-bs-interval="4000">
+                        {% else %}
+                        <div class="carousel-item" data-bs-interval="4000"></div>
+                        {% endif %}
+                        <img src="images/{{ c.photo }}" class="d-block w-100 mx-auto caring" style="max-width: 480px;" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ c.designation }}</h5>
+                            <p>{{ c.description }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+{% endblock %}

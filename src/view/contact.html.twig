@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %} {% block title %} {{ parent() }} Contactez-moi {% endblock %} {% block contenu %} {{ parent() }}
+<div class="container-fluid bg-light">
+    <h1 class="text-primary text-center">Shop-Shop - eCommerce</h1>
+
+    <hr>
+    <div class="container bg-light">
+        <fieldset>
+            <legend>Formulaire de contact</legend>
+            <form id="contact" name="contact" method="post">
+                <div class="form-group row">
+                    <label for="nom" class="col-sm-2 col-form-label-sm">Nom :</label>
+                    <div class="col-sm-10"><input type="text" class="form-control form-control-sm" name="nom" id="nom"></div>
+                </div>
+                <div class="form-group row">
+                    <label for="prenom" class="col-sm-2 col-form-label-sm">Prenom :</label>
+                    <div class="col-sm-10"><input type="text" class="form-control form-control-sm" name="prenom" id="prenom"></div>
+                </div>
+                <div class="form-group row">
+                    <label for="mail" class="col-sm-2 col-form-label-sm">Mail :</label>
+                    <div class="col-sm-10"><input type="text" class="form-control form-control-sm" name="mail" id="mail"></div>
+                </div>
+                <div class="form-group row">
+                    <label for="message" class="col-sm-2 col-form-label-sm">Message :</label>
+                    <div class="col-sm-10"><textarea class="form-control" name="demandeContact" cols="4" rows="3" id="demandeContact"></textarea></div>
+                    <div class="col-sm-10"><input type="submit" class="btn btn-primary" name="btContact" id="btContact" value="Envoyer"></div>
+            </form>
+        </fieldset>
+        </div>
+
+    </div>
+
+    {% endblock %}

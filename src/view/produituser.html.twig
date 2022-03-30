@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %} {% block title %} {{ parent() }} Achat des produits {% endblock %} {% block contenu %}
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 fw-normal">Nos Produits</h1>
+        <p class="lead fw-normal">Tout vos composant informatique pour réaliser l'ordinateur de vos rêves à moindre prix !</p>
+    </div>
+</div>
+
+<main>
+    {% if form.valideAjout is defined %} {% if form.valideAjout == true %}
+    <h3 class="text-success">{{ form.message }}</h3>
+    {% else %}
+    <h3 class="text-danger">{{ form.message }}</h3>
+    {% endif %} {% endif %}
+    <div class="col">{% if produit | length > 0 %}
+        <form action="index.php?page=shop&id={{ produit.id }}" method="post" enctype="application/x-www-form-urlencoded">
+            {% for p in produit %}
+            <div class="card">
+                {% if p.image == NULL %}
+                <img src="https://via.placeholder.com/100" alt="" width="180" height="100">{% else %}
+                <img src="images/{{p.photo}}" alt="" width="100" height="100" />{% endif %}
+                <div class="card-body">
+                    <h4 class="card-title">{{p.designation}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">{{p.libelletype}}, {{p.prix}}$</h6>
+                    <p class="card-text">{{p.description}}</p>
+                    <a role="button" class="btn btn-info btn-block" href="/index.php?page=vue-produit&id={{ p.id }}">Détail</a>
+                    <input type="hidden" name="id" value="{{ form.p.id }}">
+                    <button class="btn btn-warning" type="submit" name="btAjoutP">Ajouter au panier</button>
+                </div>
+            </div>
+            {% endfor %}
+        </form>
+        {% endif %} {% set nb = form.nbpages %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center m-4 p-4">
+                <li class="page-item {% if form.nopage == 0 %}disabled{% endif %}">
+                    <a class="page-link" href="index.php?page=admin-produit&nopage={{ 0 }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% for i in 1 .. nb %}
+                <li class="page-item {% if i == form.nopage + 1 %} active {% endif %}">
+                    <a class="page-link" href="index.php?page=admin-produit&nopage={{ i - 1 }}">{{ i }}</a>
+                </li>
+                <li class="page-item {% if form.nopage == form.nbpages - 1 %}disabled{% endif %}">
+                    <a class="page-link" href="index.php?page=admin-produit&nopage={{ nb - 1 }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% else %}
+        <h1 class="text-center">Il n'y a pas de produit.</h1>
+        {% endfor %}
+    </div>
+    <main>
+        {% endblock %}
