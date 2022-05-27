@@ -9,6 +9,7 @@ require_once '../src/model/_classes.php';
 require_once '../config/routes.php';
 $loader = new \Twig\Loader\FilesystemLoader('../src/view/');
 $twig = $twig = new \Twig\Environment($loader, []);
+$twig->addGlobal('session', $_SESSION);
 $db = connect($config);
 $content = getPage($db);
 $content($twig, $db);

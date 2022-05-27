@@ -9,14 +9,12 @@ class Product{
     private $selectLimit;
     private $selectCount;
     private $recherche;
-    private $selectIn;
 
     public function __construct($db){
         $this->db = $db;
         $this->insert = $this->db->prepare("INSERT INTO produit(designation, description, prix, photo, idType) VALUES(:designation, :description, :prix, :photo, :idType)");
         $this->select = $db->prepare("SELECT p.id, designation, idType, description, prix, photo, t.libelle AS libelletype FROM produit p, type t WHERE p.idType  = t.id ORDER BY designation");
         $this->selectById = $this->db->prepare("SELECT id, designation, description, prix, photo, idType from produit where id=:id");
-        $this->selectIn = $this->db->prepare("SELECT id, designation, description, prix, photo, idType from produit where FIND_IN_SET(id, :ids)");
         $this->update = $this->db->prepare("UPDATE produit SET designation=:designation, description=:description, prix=:prix, photo=:photo, idType=:idType WHERE id=:id");
         $this->delete = $this->db->prepare("DELETE from produit where id=:id");
         $this->selectLimit = $db->prepare("SELECT p.id, designation, idType, description, prix, photo, idType, t.libelle AS libelletype FROM produit p, type t WHERE p.idType  = t.id ORDER BY designation limit :inf, :limite");
@@ -65,16 +63,7 @@ class Product{
         }
         return $this->selectCount->fetch();
     }
-  
-    public function selectIn($ids){
-        $implose = implode(',', $ids);
-        $this->selectIn->bindParam(':ids', $implose);
-        $this->selectIn->execute();
-        if ($this->selectIn->errorCode()!=0){
-            print_r($this->selectIn->errorInfo());
-        }
-    return $this->selectIn->fetchAll();
-    }
+
 
     public function update($id, $designation, $description, $prix, $photo, $idType){
         $r = true;

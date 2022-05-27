@@ -15,7 +15,7 @@
     <div class="col">{% if produit | length > 0 %}
         <form action="index.php?page=shop&id={{ produit.id }}" method="post" enctype="application/x-www-form-urlencoded">
             {% for p in produit %}
-            <div class="card">
+            <div class="card mt-2">
                 {% if p.image == NULL %}
                 <img src="https://via.placeholder.com/100" alt="" width="180" height="100">{% else %}
                 <img src="images/{{p.photo}}" alt="" width="100" height="100" />{% endif %}
@@ -24,6 +24,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">{{p.libelletype}}, {{p.prix}}$</h6>
                     <p class="card-text">{{p.description}}</p>
                     <a role="button" class="btn btn-info btn-block" href="/index.php?page=vue-produit&id={{ p.id }}">Détail</a>
+
                     <input type="hidden" name="id" value="{{ form.p.id }}">
                     <button class="btn btn-warning" type="submit" name="btAjoutP">Ajouter au panier</button>
                 </div>
@@ -31,6 +32,8 @@
             {% endfor %}
         </form>
         {% endif %} {% set nb = form.nbpages %}
+
+
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center m-4 p-4">
                 <li class="page-item {% if form.nopage == 0 %}disabled{% endif %}">

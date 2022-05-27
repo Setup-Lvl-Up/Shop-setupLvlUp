@@ -7,7 +7,7 @@ function inscrireController($twig, $db){
         $inputPassword2 =$_POST['inputPassword2'];
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
-        $role = $_POST['role'];
+        $role = 2;
         $form['valide'] = true;
         if ($inputPassword!=$inputPassword2){
             $form['valide'] = false;

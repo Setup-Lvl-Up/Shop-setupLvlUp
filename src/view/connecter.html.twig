@@ -1,6 +1,17 @@
-{% extends "base.html.twig" %} {% block title %} {{ parent() }} Se Connecter {% endblock %} {% block contenu %} {{ parent() }}
+{% extends "base.html.twig" %} {% block title %} {{ parent() }} Se Connecter {% endblock %} {% block contenu %}
 <div class="d-flex justify-content-center">
-    <form action="index.php?page=connecter" method="post" enctype="application/x-www-form- urlencoded">
+    {% if form.valide is defined %} {% if form.valide == true %}
+    <h1>Connection réussie</h1>
+    <h1>Voici votre identifiant : {{form.email}}</h1>
+    {% else %}
+    <div class="col-4"></div>
+    <div class="col">
+        <h1>Echec de la connection</h1>
+        <h1>Erreur : {{form.message}}</h1>
+        <h1><a class="link-danger" href="index.php?page=connecter">Retourner sur la page de connection</a></h1>
+    </div>
+    {% endif %}{% else %}
+    <form action="index.php?page=connecter" method="post" enctype="application/x-www-form-urlencoded">
         <h1>Connecter-vous !</h1>
         <label for="inputEmail" class="sr-only">Email:</label>
         <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email" required>
@@ -10,5 +21,4 @@
 
         <button class="btn btn-lg mt-3 btn-primary btn-block" type="submit" name="btConnect">connexion</button>
     </form>
-</div>
-{% endblock %}
+</div>{% endif %} {% endblock contenu %}

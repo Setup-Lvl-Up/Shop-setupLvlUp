@@ -2,7 +2,7 @@
 function getPage($db){
     $lesPages['home'] = "homeController;0";
 
-    $lesPages['recherche'] ="rechercheController2";
+    $lesPages['recherche'] ="rechercheController;2";
     /* PAGE GENERAL DU SITE */
     $lesPages['contact'] = "contactController;0";
     $lesPages['about'] = "aboutController;0";

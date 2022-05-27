@@ -154,11 +154,11 @@ function productModifController($twig, $db){
             $form['valide'] = true;
             
             $upload = new Upload(array('png', 'gif', 'jpg', 'jpeg'), 'images', 500000, $designation);
-            if($photo['nom']!=NULL){
-                $photo = $upload->enregistrer('photo');
+            if($maphoto['nom']==NULL){
+                $maphoto = $upload->enregistrer('photo');
             }
             
-            $exec=$produit->update($id, $designation, $description, $prix, $photo['nom'], $idType);
+            $exec=$produit->update($id, $designation, $description, $prix, $maphoto['nom'], $idType);
 
             if(!$exec){
                 $form['valide'] = false;

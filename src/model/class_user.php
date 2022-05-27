@@ -21,7 +21,7 @@ class User{
         $this->update = $this->db->prepare("UPDATE utilisateur set nom=:nom, prenom=:prenom, idrole=:role where id=:id");
         $this->updateMdp = $this->db->prepare("UPDATE utilisateur SET mdp=:mdp where id=:id");
         $this->updateMail = $this->db->prepare("UPDATE utilisateur SET email=:email WHERE id=:id");
-        $this->delete = $this->db->prepare("delete from utilisateur where id=:id");
+        $this->delete = $this->db->prepare("DELETE from utilisateur where id=:id");
     }
     /*** @category fonction/procedure de la classe User() ***/
     public function insert($email, $mdp, $role, $nom, $prenom){
