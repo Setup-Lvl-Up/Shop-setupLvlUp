@@ -9,18 +9,22 @@ class Product{
     private $selectLimit;
     private $selectCount;
     private $recherche;
+    private $selectIn;
+    private $lastProduct;
 
     public function __construct($db){
         $this->db = $db;
         $this->insert = $this->db->prepare("INSERT INTO produit(designation, description, prix, photo, idType) VALUES(:designation, :description, :prix, :photo, :idType)");
         $this->select = $db->prepare("SELECT p.id, designation, idType, description, prix, photo, t.libelle AS libelletype FROM produit p, type t WHERE p.idType  = t.id ORDER BY designation");
         $this->selectById = $this->db->prepare("SELECT id, designation, description, prix, photo, idType from produit where id=:id");
+        $this->selectIn = $this->db->prepare("SELECT id, designation, description, prix, photo, idType from produit where FIND_IN_SET(id, :ids)");
         $this->update = $this->db->prepare("UPDATE produit SET designation=:designation, description=:description, prix=:prix, photo=:photo, idType=:idType WHERE id=:id");
         $this->delete = $this->db->prepare("DELETE from produit where id=:id");
         $this->selectLimit = $db->prepare("SELECT p.id, designation, idType, description, prix, photo, idType, t.libelle AS libelletype FROM produit p, type t WHERE p.idType  = t.id ORDER BY designation limit :inf, :limite");
         $this->selectCount =$db->prepare("SELECT count(*) as nb from produit");
         $this->recherche = $db->prepare("SELECT p.id,designation,description,prix,photo,t.libelle 
         as type from produit p,type t where p.idType = t.id and designation like :recherche order by designation");
+        $this->lastProduct = $db->prepare("SELECT p.id, designation, idType, description, prix, photo, t.libelle AS libelletype FROM produit p, type t WHERE p.idType  = t.id ORDER BY p.id DESC LIMIT 3");
     }
 
     public function insert($designation, $description, $prix, $photo, $idType){
@@ -40,12 +44,28 @@ class Product{
         }
         return $this->select->fetchAll();
     }
+    public function lastProduct(){
+        $this->lastProduct->execute();
+        if ($this->lastProduct->errorCode()!=0){
+            print_r($this->lastProduct->errorInfo());
+        }
+        return $this->lastProduct->fetchAll();
+    }
     public function selectById($id){
         $this->selectById->execute(array(':id'=>$id)); 
         if ($this->selectById->errorCode()!=0){
             print_r($this->selectById->errorInfo());
         }
         return $this->selectById->fetch();
+    }
+    public function selectIn($ids){
+        $implose = implode(',', $ids);
+        $this->selectIn->bindParam(':ids', $implose);
+        $this->selectIn->execute();
+        if ($this->selectIn->errorCode()!=0){
+            print_r($this->selectIn->errorInfo());
+        }
+        return $this->selectIn->fetchAll();
     }
     public function selectLimit($inf, $limite){
         $this->selectLimit->bindParam(':inf', $inf, PDO::PARAM_INT);

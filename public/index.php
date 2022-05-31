@@ -10,6 +10,7 @@ require_once '../config/routes.php';
 $loader = new \Twig\Loader\FilesystemLoader('../src/view/');
 $twig = $twig = new \Twig\Environment($loader, []);
 $twig->addGlobal('session', $_SESSION);
+$twig->addGlobal('get', $_GET);
 $db = connect($config);
 $content = getPage($db);
 $content($twig, $db);

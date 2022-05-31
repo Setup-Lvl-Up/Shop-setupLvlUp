@@ -1,17 +1,14 @@
 <nav class="navbar navbar-expand-lg bg-dark p-3">
-    <div class="col-3">
+    <div class="col-lg-3">
         <a class="navbar-brand glitch layers" data-text="SutupLVLUp" href="/">
             <span>Setup LVL Up</span>
         </a>
     </div>
-    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerContent" aria-controls="navbarTogglerContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerContent" aria-controls="navbarTogglerContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><i class="bi bi-menu-down"></i></span>
     </button>
-    <div class="col-6 collapse navbar-collapse" id="navbarTogglerContent">
+    <div class="col-lg-6 collapse navbar-collapse" id="navbarTogglerContent">
         <ul class="navbar-nav mt-lg-0 mx-auto">
-            <li class="nav-item">
-                <a href="/index.php/?page=inscrire" class="nav-link">S'inscrire</a>
-            </li>
             {% if session.login is defined %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Compte</a>
@@ -23,9 +20,12 @@
             </li>
             {% else %}
             <li class="nav-item">
-                <a href="/index.php?page=connecter" class="nav-link">connexion</a>
+                <a href="/index.php/?page=inscrire" class="nav-link" {% if get.page == 'inscrire' %}style="color:#2794b6" {% endif %}>S'inscrire</a>
             </li>
-            {% endif %} {%if session.login is defined %}
+            <li class="nav-item">
+                <a href="/index.php?page=connecter" class="nav-link" {% if get.page == 'connecter' %}style="color:#2794b6" {% endif %}>connexion</a>
+            </li>
+            {% endif %} {% if session.login is defined %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">produit</a>
                 <div class="dropdown-menu bg-dark" data-bs-popper="none">
@@ -34,23 +34,41 @@
             </li>
             {% endif %}
             <li class="nav-item">
-                <a href="/index.php/?page=shop" class="nav-link">Produit</a>
+                <a href="/index.php/?page=shop" class="nav-link" {% if get.page == 'shop' %}style="color:#2794b6" {% endif %}>Produit</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="/index.php/?page=contact">contact</a>
+                <a class="nav-link" href="/index.php/?page=contact" {% if get.page == 'contact' %}style="color:#2794b6" {% endif %}>contact</a>
             </li>
         </ul>
     </div>
-    <div class="col-3">
-        <ul class="navbar-nav">
+    <div class="col-lg-3">
+        <ul class="navbar-nav d-flex flex-row-reverse">
             <li class="nav-item">
-                <a class="nav-link" href="/index.php/?page=panier">Mon panier <i class="bi bi-cart4"></i></a>
+                <a class="nav-link link-panier" href="/index.php/?page=panier" {% if get.page == 'panier' %}style="color: #2794b6" {% endif %}><span class="panier">Mon panier</span> <i class="bi bi-cart4"></i></a>
             </li>
         </ul>
     </div>
 </nav>
 
 <style>
+    @media screen and (max-width: 768px) {
+        .link-panier {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            right: 18vw;
+            bottom: 5vw;
+        }
+        .panier {
+            display: none;
+        }
+        .navbar-toggler {
+            position: absolute;
+            right: 2vw;
+            bottom: 2vw;
+        }
+    }
+    
     .navbar-brand {
         font-size: clamp(20px, 10vw, 30px);
         line-height: 1;
@@ -62,13 +80,15 @@
         filter: drop-shadow(0 1px 3px);
     }
     
-    .nav-link {
+    .nav-link,
+    .navbar-toggler {
         font-size: 20px;
         color: #fff;
         filter: drop-shadow(0 1px 3px);
     }
     
-    .nav-link:hover {
+    .nav-link:hover,
+    .navbar-toggler:hover {
         color: #1bc7fb;
         filter: drop-shadow(0 1px 3px);
     }

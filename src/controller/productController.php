@@ -7,7 +7,7 @@ function productUserController($twig, $db){
     if(isset($_POST['btAjoutP'])){
         if(isset($_POST['id'])){
             $form['valideAjout']=true;
-            $unProduit = $produit->selectById($_POST['id']);
+            $unProduit = $product->selectById($_POST['id']);
             if(!$unProduit){
                 $form['valideAjout']=false;
                 $form['message'] = "Le produit n'existe pas";

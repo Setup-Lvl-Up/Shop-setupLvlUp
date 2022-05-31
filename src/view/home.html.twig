@@ -1,14 +1,26 @@
-{% extends "base.html.twig" %} {% block title %} {{ parent() }} Accueil {% endblock %} {% block contenu %}
-<div class="container">
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <h1 class="text-center">Bienvenue sur Setup Level Up </h1>
+{% extends "base.html.twig" %} {% block title %} {{ parent() }} Accueil {% endblock title %} {% block contenu %}
 
-
-
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <h1 class="text-center mt-4">Bienvenue sur Setup Level Up </h1>
+        <div class="bg-light p-2">
+            <h2 class="text-center">Nouveauté</h2>
+            {% for p in produit %}
+            <div class="card mt-2">
+                {% if p.photo == NULL %}
+                <img src="https://via.placeholder.com/1920x1080" alt="" width="100%" height="auto">{% else %}
+                <img src="images/{{p.photo}}" alt="" width="100%" height="auto" />{% endif %}
+                <div class="card-body">
+                    <h4 class="card-title">{{p.designation}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">{{p.libelletype}}, {{p.prix}}$</h6>
+                    <p class="card-text">{{p.description}}</p>
+                    <a role="button" class="btn btn-info btn-block" href="/index.php?page=vue-produit&id={{ p.id }}">Détail</a>
+                </div>
+            </div>{% endfor %}
         </div>
-        <div class="col-3"></div>
     </div>
+    <div class="col-lg-3"></div>
 </div>
+
 {% endblock %}

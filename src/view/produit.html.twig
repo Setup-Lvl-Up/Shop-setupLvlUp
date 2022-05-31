@@ -30,7 +30,7 @@
                     <tbody>
                         {% for p in produit %}
                         <tr>
-                            <td><img src="images/{{p.photo}}" alt="" width="180" height="auto" /></td>
+                            <td><img src="../images/{{p.photo}}" alt="" width="180" height="auto" /></td>
                             <td>{{p.designation}}</td>
                             <td>{{p.description}}</td>
                             <td>{{p.prix}}$</td>
@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 {% for i in 1 .. nb %}
-                <li class="page-item {% if i == form.nopage + 1 %} active {% endif %}">
+                <li class="page-item {% if i == form.nopage + 1 %}active{% endif %}">
                     <a class="page-link" href="index.php?page=admin-produit&nopage={{ i - 1 }}">{{ i }}</a>
                 </li>
                 <li class="page-item {% if form.nopage == form.nbpages - 1 %}disabled{% endif %}">
@@ -64,11 +64,9 @@
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
+                {% endfor %}
             </ul>
         </nav>
-        {% else %}
-        <h1 class="text-center">Il n'y a pas de produit.</h1>
-        {% endfor %}
     </div>
 </div>
 {% endblock %}

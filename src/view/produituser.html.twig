@@ -16,16 +16,15 @@
         <form action="index.php?page=shop&id={{ produit.id }}" method="post" enctype="application/x-www-form-urlencoded">
             {% for p in produit %}
             <div class="card mt-2">
-                {% if p.image == NULL %}
-                <img src="https://via.placeholder.com/100" alt="" width="180" height="100">{% else %}
-                <img src="images/{{p.photo}}" alt="" width="100" height="100" />{% endif %}
+                {% if p.photo == NULL %}
+                <img src="https://via.placeholder.com/720x480" alt="" width="100%" height="auto">{% else %}
+                <img class="text-center" src="../images/{{p.photo}}" alt="{{ p.designation }}" width="90%" height="auto" />{% endif %}
                 <div class="card-body">
                     <h4 class="card-title">{{p.designation}}</h4>
                     <h6 class="card-subtitle mb-2 text-muted">{{p.libelletype}}, {{p.prix}}$</h6>
                     <p class="card-text">{{p.description}}</p>
                     <a role="button" class="btn btn-info btn-block" href="/index.php?page=vue-produit&id={{ p.id }}">Détail</a>
-
-                    <input type="hidden" name="id" value="{{ form.p.id }}">
+                    <input type="hidden" name="id" value="{{ p.id }}">
                     <button class="btn btn-warning" type="submit" name="btAjoutP">Ajouter au panier</button>
                 </div>
             </div>

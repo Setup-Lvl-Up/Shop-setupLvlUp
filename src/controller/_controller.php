@@ -1,5 +1,6 @@
 <?php
 require_once 'homeController.php';
+require_once 'aboutController.php';
 require_once 'contactController.php';
 require_once 'inscrireController.php';
 require_once 'connecterController.php';

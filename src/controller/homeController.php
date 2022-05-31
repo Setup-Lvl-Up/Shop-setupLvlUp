@@ -1,13 +1,12 @@
 <?php
 function homeController($twig, $db){
-    $form = array();
+    $inf=0;
+    $limite =3;
     $product = new Product($db);
-    $liste = $product->select();
+    $liste = $product->selectLimit($inf, $limite);
+    $produit = $product->lastProduct();
 
-    echo $twig->render('home.html.twig', array('form'=>$form, 'liste'=>$liste));
-}
-function aboutController($twig){
-    echo 'À propos de nous';
+    echo $twig->render('home.html.twig', array('produit'=>$produit, 'liste'=>$liste));
 }
 function mentionsController($twig){
     echo $twig->render('mention-legal.html.twig', array());

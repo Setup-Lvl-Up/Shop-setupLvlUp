@@ -1,21 +1,27 @@
 {% extends "base.html.twig" %} {% block title %} {{ parent() }} Produit {% endblock %} {% block contenu %} {% if form.valideAjout is defined %} {% if form.valideAjout == true %}
-<h2 class="text-success">{{ form.message }}</h2>
-{% else %}
-<h2 class="text-danger">{{ form.message }}</h2>
-{% endif %} {% endif %}
-<h1 class="h2 mb-3 mt-4 font-weight-normal">Produit</h1>
-{% if form.produit is defined %} {% if form.produit != null %}
-<p>Produit : {{form.produit.designation }}</p>
-<form action="index.php?page=vue-produit&id={{ form.produit.id }}" method="post" enctype="application/x-www-form-urlencoded">
-    <input type="hidden" name="id" value="{{ form.produit.id }}" />
-    <button class="btn btn-warning rounded-pill" type="submit" name="btAjoutP">Ajouter au panier</button>
-</form> {% else %}
-<h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
-<a href="index.php?page=admin-produit">Retourner sur la liste des produits</a> {% endif %} {% else %} {% if form.valide == true %}
-<h1 class="alert h3 mb-3 font-weight-normal">{{ form.message }} </h1>
-<h1 class="h3 mb-3 font-weight-normal">
-    <a href="index.php?page=admin-produit">Retourner sur la liste des produits</a></h1>
-{% else %}
-<h1 class=" alert alert-success alert-danger" role="alert">{{ form.message }}</h1>
-<h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=admin-produit">Retourner sur la liste des produits</a></h1>
+<div class="container">
+    <h2 class="text-success">{{ form.message }}</h2>
+    {% else %}
+    <h2 class="text-danger">{{ form.message }}</h2>
+    {% endif %} {% endif %} {% if form.produit is defined %} {% if form.produit != null %}
+    <div class="text-center bg-light">
+        <h1 class="mb-3 mt-4 display-4">{{form.produit.designation }}</h1>
+        <img class="mt-2 mb-2" src="../images/{{form.produit.photo}}" alt="" width="100%">
+        <p class="mt-4" style="font-size:20px;">{{form.produit.description}}</p>
+
+        <form class="mb-2" action="index.php?page=vue-produit&id={{ form.produit.id }}" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="id" value="{{ form.produit.id }}" />
+            <label for="btn">{{form.produit.prix}} $</label>
+            <button class="btn btn-warning rounded-pill mb-3" type="submit" name="btAjoutP">Ajouter au panier</button>
+        </form>
+    </div> {% else %}
+    <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
+    <a href="index.php?page=admin-produit">Retourner sur la liste des produits</a> {% endif %} {% else %} {% if form.valide == true %}
+    <h1 class="alert h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+    <h1 class="h3 mb-3 font-weight-normal">
+        <a href="index.php?page=admin-produit">Retourner sur la liste des produits</a></h1>
+    {% else %}
+    <h1 class=" alert alert-success alert-danger" role="alert">{{ form.message }}</h1>
+    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=admin-produit">Retourner sur la liste des produits</a></h1>
+</div>
 {% endif %} {% endif %} {% endblock %}

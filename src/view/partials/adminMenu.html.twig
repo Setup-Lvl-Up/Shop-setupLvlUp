@@ -1,35 +1,170 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 18vw; height:80vh">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <div class="sidebar-brand-icon"><i class="bi bi-cone-striped"></i> </div>
-        <span class="m-2 fs-4">Administration</span>
+<nav class="navbar-primary">
+
+    <a href="#" class="btn-expand-collapse"><i class="bi bi-arrow-bar-left"></i></a>
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none navbar-brand">
+    <span class="glyphicon glyphicon-list-alt mx-auto"><i class="bi bi-cone-striped"></i></span>
+    <span class="nav-label m-2 fs-4">Administration</span>
     </a>
+    
     <hr>
-    <ul class="nav nav-pills flex-column mb-auto justify-content-center">
+    <ul class="navbar-primary-menu">
         <li class="nav-item">
-            <a href="index.php" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><i class="bi bi-house-door"></i></svg> - Accueil
-            </a>
-        </li>
-        <li>
-            <a href="/index.php?page=admin-produit" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><i class="bi bi-box-seam"></i></svg></i> - Produit
-            </a>
-        </li>
-        <li>
-            <a href="/index.php?page=admin-type" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><i class="bi bi-inbox"></i></svg> - Catégorie
-            </a>
-        </li>
-        <li>
-            <a href="/index.php?page=ajout-produit" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><i class="bi bi-plus-circle-fill"></i></svg> Nouveau Produit
-            </a>
-        </li>
-        <li>
-            <a href="/index.php?page=ajout-type" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><i class="bi bi-plus-circle-fill"></i></use></svg> nouvelle Catégorie
-            </a>
+            <a class="nav-link" href="index.php"><span class="glyphicon glyphicon-list-alt"><i class="bi bi-house-door"></i></span><span class="nav-label">Retour au site</span></a>
+            <a class="nav-link" href="/index.php?page=admin-produit"><span class="glyphicon glyphicon-envelope"><i class="bi bi-box-seam"></i></span><span class="nav-label">Produit</span></a>
+            <a class="nav-link" href="/index.php?page=admin-type"><span class="glyphicon glyphicon-cog"><i class="bi bi-inbox"></i></span><span class="nav-label">Catégorie</span></a>
+            <a class="nav-link" href="/index.php?page=ajout-produit"><span class="glyphicon glyphicon-film"><i class="bi bi-plus-circle-fill"></i></span><span class="nav-label">Nouveau Produit</span></a>
+            <a class="nav-link" href="/index.php?page=ajout-type"><span class="glyphicon glyphicon-calendar"><i class="bi bi-plus-circle-fill"></i></span><span class="nav-label">nouvelle Catégorie</span></a>
         </li>
     </ul>
-    <hr>
-</div>
+</nav>
+
+<style>
+    .navbar-primary {
+        background-color: #212529;
+        bottom: 0px;
+        left: 0px;
+        position: relative;
+        top: 0;
+        width: 220px;
+        z-index: 8;
+        overflow: hidden;
+        -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;
+        height: 100%;
+    }
+    hr{
+        border-top: solid 1px #1BC7FB;
+    }
+    .navbar-primary.collapsed {
+        width: 60px;
+    }
+    
+    .navbar-primary.collapsed .glyphicon {
+        font-size: 22px;
+    }
+    
+    .navbar-primary.collapsed .nav-label {
+        display: none;
+    }
+    
+    .btn-expand-collapse {
+        position: absolute;
+        display: block;
+        left: 0px;
+        bottom: 0;
+        width: 100%;
+        padding: 8px 0;
+        border-top: solid 1px #1BC7FB;
+        color:#fff;
+        font-size: 2em;
+        text-align: center;
+    }
+    
+    .btn-expand-collapse:hover,
+    .btn-expand-collapse:focus {
+        background-color: #222;
+        color: white;
+    }
+    
+    .btn-expand-collapse:active {
+        background-color: #111;
+    }
+    
+    .navbar-primary-menu,
+    .navbar-primary-menu li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .navbar-primary-menu li a {
+        display: block;
+        padding: 10px 18px;
+        text-align: left;
+        border-bottom: solid 1px rgb(160, 160, 160);
+        color: #ccc;
+    }
+    
+    .navbar-primary-menu li a:hover {
+        background-color: #000;
+        text-decoration: none;
+        color: #1BC7FB;
+    }
+    
+    .navbar-primary-menu li a .glyphicon {
+        margin-right: 6px;
+    }
+    
+    .navbar-primary-menu li a:hover .glyphicon {
+        color: #1BC7FB;
+    }
+    
+    .main-content {
+        margin-top: 60px;
+        margin-left: 200px;
+        padding: 20px;
+    }
+    
+    .collapsed+.main-content {
+        margin-left: 60px;
+    }
+    
+    @media (min-width: 768px) {
+        #page-content-wrapper {
+            padding: 20px;
+            position: relative;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        #wrapper.toggled #page-content-wrapper {
+            position: relative;
+            margin-right: 0;
+            padding-left: 250px;
+        }
+        #wrapper.toggled-2 #page-content-wrapper {
+            position: relative;
+            margin-right: 0;
+            margin-left: -200px;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            width: auto;
+        }
+    }
+    @media screen and (max-width: 864px) {
+        .row{
+            margin-right: 0;
+        }
+        .navbar-primary {
+            width: 100vw;
+            display: flex !important;
+        }
+        .navbar-brand{
+            margin-left: 1em;
+        }
+        .navbar-brand .nav-label{
+            display: none;
+        }
+        .nav-item{
+            display: flex;
+        }
+        .btn-expand-collapse{
+           display: none;
+        }
+        .nav-item .nav-link{
+            border-bottom: none;
+            text-align: center;
+            padding: 5px 1px;
+        }
+    }
+</style>
+<script>
+    $('.btn-expand-collapse').click(function(e) {
+        $('.navbar-primary').toggleClass('collapsed');
+    });
+    
+</script>
