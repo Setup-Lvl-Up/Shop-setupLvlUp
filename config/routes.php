@@ -12,11 +12,12 @@ function getPage($db){
     /*inscription, connect, disconect*/
     $lesPages['inscrire'] = "inscrireController;0";
     $lesPages['connecter'] = "connecterController;0";
-    $lesPages['disconnect'] = "disconnectionController;2";
+    $lesPages['disconnect'] = "disconnectionController;1";
 
     /**** Administration des utilisateurs ****/
     $lesPages['admin'] = "userController;1";
     $lesPages['user-modif'] = "userModifController;1";
+    $lesPages['admin-register'] = "registerController;1";
 
     /**** Gestion et affichage des produits et leurs type ****/
     $lesPages['ajout-type'] = "typeInsertController;1";

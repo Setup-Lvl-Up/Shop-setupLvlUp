@@ -9,4 +9,5 @@ require_once 'userController.php';
 require_once 'typeController.php';
 require_once 'productController.php';
 require_once 'panierController.php';
+require_once 'registerController.php';
 ?>

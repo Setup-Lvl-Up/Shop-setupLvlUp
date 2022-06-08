@@ -26,11 +26,8 @@
                 <a href="/index.php?page=connecter" class="nav-link" {% if get.page == 'connecter' %}style="color:#2794b6" {% endif %}>connexion</a>
             </li>
             {% endif %} {% if session.login is defined %}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">produit</a>
-                <div class="dropdown-menu bg-dark" data-bs-popper="none">
-                    <a href="/index.php?page=admin-produit" class="dropdown-item">Administration</a>
-                </div>
+            <li class="nav-item">
+                <a href="/index.php?page=admin-produit" class="nav-link" {% if get.page == 'admin-produit' %}style="color:#2794b6" {% endif %}>Admin</a>
             </li>
             {% endif %}
             <li class="nav-item">

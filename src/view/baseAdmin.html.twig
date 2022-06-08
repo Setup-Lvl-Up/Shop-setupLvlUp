@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -19,11 +18,17 @@
     .container {
         min-height: calc(100vh - 450px);
     }
+    @media screen and (max-width: 768px) {
+        .menu{
+            position: fixed;
+            bottom: 0;
+        }
+    }
 </style>
 
 <body>
     <div class="row">
-        <div class="col-lg-2">{% include 'partials/adminMenu.html.twig' %}</div>
+        <div class="col-lg-2 menu">{% include 'partials/adminMenu.html.twig' %}</div>
         <div class="col">
             <div class="container">{% block contenu %} {% endblock %}</div>
         </div>
