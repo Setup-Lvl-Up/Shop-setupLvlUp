@@ -1,1 +1,1 @@
-https://setuplvlup.flonegre.xyz/
+https://setuplvlup.fnegre.net/
